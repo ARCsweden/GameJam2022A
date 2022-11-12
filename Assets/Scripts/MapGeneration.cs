@@ -33,11 +33,9 @@ public class MapGeneration : MonoBehaviour
 
         //GetComponent<SpriteRenderer>().sprite = Sprite.Create(biome[1], new Rect(0.0f, 0.0f, biome[1].width, biome[1].height), new Vector2(0.5f, 0.5f), imageScale);
 
-        TerrainData tD = terrain.terrainData;
-
-        tD.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
-        tD.alphamapResolution = imageDim.x;
-        tD.SetAlphamaps(0,0,biome);
+        terrain.terrainData.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
+        terrain.terrainData.alphamapResolution = imageDim.x;
+        terrain.terrainData.SetAlphamaps(0,0,biome);
 
         Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity);
     }
