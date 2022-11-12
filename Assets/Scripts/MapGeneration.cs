@@ -9,13 +9,13 @@ public class MapGeneration : MonoBehaviour
     public Terrain terrain;
 
     public int itemsToPlace = 6;
-    public Vector2Int spread = new Vector2Int(20, 20);
-    public Vector2Int border = new Vector2Int(10, 10);
-    public float minimunDistance = 10;
+    public Vector2Int spread = new Vector2Int(500, 500);
+    public Vector2Int border = new Vector2Int(100, 100);
+    public float minimunDistance = 200;
 
-    public int imageScale = 10;
-    public int blurSize = 10;
-    public int circleSize = 100;
+    public int imageScale = 20;
+    public int blurSize = 2;
+    public int circleSize = 5;
 
     //private Vector2[] castlePos = new Vector2[itemsToPlace];
     private Vector2Int imageDim;
@@ -23,7 +23,7 @@ public class MapGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        imageDim = (spread+border) * 2 * imageScale;
+        imageDim = (spread+border) * 2 / imageScale;
 
         Vector2[] castlePos = GenerateCastle();
 
@@ -96,8 +96,8 @@ public class MapGeneration : MonoBehaviour
                 {
                     voroni[i].SetPixel(x, y, new Color(0f, 0f, 0f, 1f));
 
-                    if (Vector2.Distance((castlePos[i] + spread + border) * imageScale, new Vector2(x, y)) < distance) { index = i; }
-                    distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) * imageScale, new Vector2(x, y)), distance);
+                    if (Vector2.Distance((castlePos[i] + spread + border) / imageScale, new Vector2(x, y)) < distance) { index = i; }
+                    distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) / imageScale, new Vector2(x, y)), distance);
                 }
 
                 voroni[index].SetPixel(x, y, new Color(circleSize / distance, circleSize / distance, circleSize / distance, 1f));

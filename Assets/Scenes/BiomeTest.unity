@@ -390,12 +390,12 @@ MonoBehaviour:
   castle: {fileID: 6834853530585761061, guid: bf021aee590e6a2479513a0d2379d07c, type: 3}
   terrain: {fileID: 888517949894727477, guid: 51b5f85b8b8c4d941983f3ed7afce627, type: 3}
   itemsToPlace: 6
-  spread: {x: 200, y: 200}
+  spread: {x: 500, y: 500}
   border: {x: 100, y: 100}
   minimunDistance: 200
-  imageScale: 1
-  blurSize: 20
-  circleSize: 50
+  imageScale: 20
+  blurSize: 2
+  circleSize: 5
 --- !u!212 &1943016301
 SpriteRenderer:
   m_ObjectHideFlags: 0
