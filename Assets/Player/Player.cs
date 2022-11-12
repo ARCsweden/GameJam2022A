@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private float gravityValue = 9.81f;
 
     private float inputMoveValueX = 0, inputMoveValueY = 0, inputMoveValueZ = 0;
-    private float inputRotValueX = 0, inputRotValueY = 0, inputRotValueZ = 0;
+    private float inputRotValueX = 0, inputRotValueZ = 0;
     private float inputShoot = 0;
 
     public GameObject bulletPrefab;

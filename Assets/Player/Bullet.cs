@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     Rigidbody myRig;
     private float time_start;
-    private float bullet_lifetime = 10.0f;
+    private float bullet_lifetime = 3.0f;
     public float bullet_speed = 10.0f;
     [SerializeField]
     float bullet_damage = 1.0f;
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         time_start = Time.time;
         myRig.AddForce(gameObject.transform.forward * bullet_speed, ForceMode.Impulse);
-        Destroy(gameObject, 3);
+        Destroy(gameObject, bullet_lifetime);
 
     }
 
