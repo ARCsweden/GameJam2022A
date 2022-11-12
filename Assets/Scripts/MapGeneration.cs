@@ -6,23 +6,40 @@ using System;
 public class MapGeneration : MonoBehaviour
 {
     public GameObject castle;
+    public Terrain terrain;
 
     public int itemsToPlace = 6;
-    public Vector2Int spread = new Vector2Int(20,20);
+    public Vector2Int spread = new Vector2Int(20, 20);
+    public Vector2Int border = new Vector2Int(10, 10);
     public float minimunDistance = 10;
 
-    public static int imageScale = 10;
+    public int imageScale = 10;
+    public int blurSize = 10;
+    public int circleSize = 100;
 
     //private Vector2[] castlePos = new Vector2[itemsToPlace];
+    private Vector2Int imageDim;
 
     // Start is called before the first frame update
     void Start()
     {
+        imageDim = (spread+border) * 2 * imageScale;
+
         Vector2[] castlePos = GenerateCastle();
 
-        Texture2D voroni = GenerateVoroni(castlePos);
+        //Texture2D voroni = GenerateVoroni(castlePos);
 
-        GetComponent<SpriteRenderer>().sprite = Sprite.Create(voroni, new Rect(0.0f, 0.0f, voroni.width, voroni.height), new Vector2(0.5f, 0.5f), imageScale);
+        float[,,] biome = GenerateBiome(castlePos);
+
+        //GetComponent<SpriteRenderer>().sprite = Sprite.Create(biome[1], new Rect(0.0f, 0.0f, biome[1].width, biome[1].height), new Vector2(0.5f, 0.5f), imageScale);
+
+        TerrainData tD = terrain.terrainData;
+
+        tD.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
+        tD.alphamapResolution = imageDim.x;
+        tD.SetAlphamaps(0,0,biome);
+
+        Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity);
     }
 
     Vector2[] GenerateCastle()
@@ -43,7 +60,7 @@ public class MapGeneration : MonoBehaviour
             if (distance >= minimunDistance)
             {
                 position.Add(next);
-                Instantiate(castle, new Vector3(next.x,0,next.y), Quaternion.identity);
+                Instantiate(castle, new Vector3(next.x, 0, next.y), Quaternion.identity);
                 toGenerate--;
             }
         }
@@ -51,18 +68,19 @@ public class MapGeneration : MonoBehaviour
         return position.ToArray();
     }
 
-    Texture2D GenerateVoroni(Vector2[] castlePos)
+
+    float[,,] GenerateBiome(Vector2[] castlePos)
     {
-        Vector2Int imageDim = spread * 2 * imageScale;
+        LinearBlur blur = new LinearBlur();
+
         Vector2Int[] centroids = new Vector2Int[itemsToPlace];
-        Color[] regions = new Color[itemsToPlace];
+
+        Texture2D[] voroni = new Texture2D[itemsToPlace];
 
         for (int i = 0; i < itemsToPlace; i++)
         {
-            regions[i] = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1f);
+            voroni[i] = new Texture2D(imageDim.x, imageDim.y);
         }
-
-        Texture2D voroni = new Texture2D(imageDim.x,imageDim.y);
 
         for (int x = 0; x < imageDim.x; x++)
         {
@@ -73,15 +91,36 @@ public class MapGeneration : MonoBehaviour
 
                 for (int i = 0; i < itemsToPlace; i++)
                 {
-                    if(Vector2.Distance((castlePos[i] + spread) * imageScale, new Vector2(x, y)) < distance) { index = i; }
-                    distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread) * imageScale, new Vector2(x, y)), distance);
+                    voroni[i].SetPixel(x, y, new Color(0f, 0f, 0f, 1f));
+
+                    if (Vector2.Distance((castlePos[i] + spread + border) * imageScale, new Vector2(x, y)) < distance) { index = i; }
+                    distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) * imageScale, new Vector2(x, y)), distance);
                 }
 
-                voroni.SetPixel(x,y,regions[index]);
+                voroni[index].SetPixel(x, y, new Color(circleSize / distance, circleSize / distance, circleSize / distance, 1f));
             }
         }
 
-        voroni.Apply();
-        return voroni;
+        float[,,] map = new float[imageDim.x, imageDim.y, itemsToPlace+1];
+
+        for (int i = 0; i < itemsToPlace; i++)
+        {
+            voroni[i] = blur.Blur(voroni[i], blurSize, 1);
+
+            voroni[i].Apply();
+
+            for (int x = 0; x < imageDim.x; x++)
+            {
+                for (int y = 0; y < imageDim.y; y++)
+                {
+                    map[y, x, i] = voroni[i].GetPixel(x, y).b;
+                    map[y, x, 6] = 1-voroni[i].GetPixel(x, y).b;
+                }
+            }
+           
+        }
+
+        return map;
     }
+
 }
