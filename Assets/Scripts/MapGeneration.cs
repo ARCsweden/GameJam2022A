@@ -5,6 +5,14 @@ using System;
 
 public class MapGeneration : MonoBehaviour
 {
+    [SerializeField]
+    float[,,] chance;
+    [SerializeField,Range(0,6)]
+    int showBiome;
+    int checkBiome;
+
+    float[,,] biome;
+
     public GameObject castle;
     public Terrain terrain;
 
@@ -23,13 +31,14 @@ public class MapGeneration : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        checkBiome = showBiome;
         imageDim = (spread+border) * 2 / imageScale;
 
         Vector2[] castlePos = GenerateCastle();
 
         //Texture2D voroni = GenerateVoroni(castlePos);
 
-        float[,,] biome = GenerateBiome(castlePos);
+        biome = GenerateBiome(castlePos);
 
         terrain.terrainData.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
         terrain.terrainData.alphamapResolution = imageDim.x;
@@ -37,25 +46,41 @@ public class MapGeneration : MonoBehaviour
 
         Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity);
 
-        float[,,] chance = GenerateChanceMaps(biome);
+        chance = GenerateChanceMaps(biome);
 
         //GetComponent<SpriteRenderer>().sprite = Sprite.Create(biome[1], new Rect(0.0f, 0.0f, biome[1].width, biome[1].height), new Vector2(0.5f, 0.5f), imageScale);
 
+        UpdateSprite();
+        
+        
+    }
 
-        /*Texture2D picture = new Texture2D(imageDim.x, imageDim.y);
+
+    private void Update()
+    {
+        if (checkBiome != showBiome)
+        {
+            UpdateSprite();
+        }
+    }
+
+    void UpdateSprite()
+    {
+
+        Texture2D picture = new Texture2D(imageDim.x, imageDim.y);
 
         for (int x = 0; x < imageDim.x; x++)
         {
             for (int y = 0; y < imageDim.y; y++)
             {
-                picture.SetPixel(x,y,new Color(biome[x, y, 1], biome[x, y, 1], biome[x, y, 1],1f));
+                picture.SetPixel(x, y, new Color(biome[x, y, showBiome], biome[x, y, showBiome], biome[x, y, showBiome], 0.3f));
             }
         }
 
         picture.Apply();
+        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), imageScale);
 
-        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), imageScale);*/
-    }
+     }
 
     Vector2[] GenerateCastle()
     {
@@ -146,14 +171,14 @@ public class MapGeneration : MonoBehaviour
     float[,,] GenerateChanceMaps(float[,,] biome) 
     {
 
-        for (int i = 0; i < itemsToPlace; i++)
+        for (int i = 0; i < itemsToPlace+1; i++)
         {
 
             for (int x = 0; x < imageDim.x; x++)
             {
                 for (int y = 0; y < imageDim.y; y++)
                 {
-                    biome[x,y,i] = Mathf.PerlinNoise(2f / imageScale * x, 2f / imageScale * y) * biome[x, y, 1];
+                    biome[x,y,i] = Mathf.PerlinNoise(0.03f / imageScale * x, 0.03f / imageScale * y) * biome[x, y, i];
                 }
             }
 

@@ -51,7 +51,7 @@ public class Escort : MonoBehaviour
             }
         }
 
-        Debug.Log("Max distance: " + playerMaxDist);
+        //Debug.Log("Max distance: " + playerMaxDist);
 
         if (players.Length > 0)
         {
