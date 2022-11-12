@@ -150,17 +150,22 @@ public class MapGeneration : MonoBehaviour
         {
             voroni[i] = blur.Blur(voroni[i], blurSize, 1);
 
-            voroni[i].Apply();
+            voroni[i].Apply();   
+        }
 
-            for (int x = 0; x < imageDim.x; x++)
+        for (int x = 0; x < imageDim.x; x++)
+        { 
+            for (int y = 0; y < imageDim.y; y++)
             {
-                for (int y = 0; y < imageDim.y; y++)
+                float[] big = { 0, 0, 0, 0, 0, 0 };
+
+                for (int i = 0; i < itemsToPlace; i++)
                 {
                     map[y, x, i] = voroni[i].GetPixel(x, y).b;
-                    map[y, x, 6] = 1-voroni[i].GetPixel(x, y).b;
+                    big[i] = map[y, x, i];
                 }
+                map[y, x, 6] = 1 - Mathf.Max(big);
             }
-           
         }
 
         return map;
@@ -168,8 +173,9 @@ public class MapGeneration : MonoBehaviour
 
     //generates a map that is a combination of PerlinNoise and biome
     //to get it to game coordinats scale with imageScale
-    float[,,] GenerateChanceMaps(float[,,] biome) 
+    float[,,] GenerateChanceMaps(float[,,]  biome) 
     {
+        float[,,] map = biome;
 
         for (int i = 0; i < itemsToPlace+1; i++)
         {
@@ -178,13 +184,13 @@ public class MapGeneration : MonoBehaviour
             {
                 for (int y = 0; y < imageDim.y; y++)
                 {
-                    biome[x,y,i] = Mathf.PerlinNoise(0.03f / imageScale * x, 0.03f / imageScale * y) * biome[x, y, i];
+                    map[x,y,i] = Mathf.PerlinNoise(0.03f / imageScale * x, 0.03f / imageScale * y) * map[x, y, i];
                 }
             }
 
         }
 
-        return biome;
+        return map;
     }
 
 
