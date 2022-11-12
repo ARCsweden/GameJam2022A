@@ -46,6 +46,7 @@ public class MapGeneration : MonoBehaviour
     {
         int toGenerate = itemsToPlace;
         List<Vector2> position = new List<Vector2>();
+        int tries = 0;
 
         while (toGenerate > 0)
         {
@@ -57,12 +58,14 @@ public class MapGeneration : MonoBehaviour
                 distance = Mathf.Min(Vector2.Distance(i, next), distance);
             }
 
-            if (distance >= minimunDistance)
+            if (distance >= minimunDistance || tries > 50)
             {
                 position.Add(next);
                 Instantiate(castle, new Vector3(next.x, 0, next.y), Quaternion.identity);
                 toGenerate--;
             }
+
+            tries++;
         }
 
         return position.ToArray();
