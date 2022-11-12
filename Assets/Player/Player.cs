@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     void OnMovement(InputValue input)
     {
         Vector2 getInputLeftStick = input.Get<Vector2>();
-        Debug.Log("Move Left Stick - X: " + getInputLeftStick.x + "     Z: " + getInputLeftStick.y);
+        //Debug.Log("Move Left Stick - X: " + getInputLeftStick.x + "     Z: " + getInputLeftStick.y);
         inputMoveValueX = getInputLeftStick.x;
         inputMoveValueZ = getInputLeftStick.y;
     }
@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
     void OnRotation(InputValue input)
     {
         Vector2 getInputRightStick = input.Get<Vector2>();
-        Debug.Log("Rot Right Stick - X: " + getInputRightStick.x + "     Z: " + getInputRightStick.y);
+        //Debug.Log("Rot Right Stick - X: " + getInputRightStick.x + "     Z: " + getInputRightStick.y);
         inputRotValueX = getInputRightStick.x;
         inputRotValueZ = getInputRightStick.y;
     }
@@ -88,14 +88,14 @@ public class Player : MonoBehaviour
     void OnJump(InputValue input)
     {
         float getInputSouthButton = input.Get<float>();
-        Debug.Log("South Button: " + getInputSouthButton);
+        //Debug.Log("South Button: " + getInputSouthButton);
         inputMoveValueY = getInputSouthButton;
     }
 
     void OnShoot(InputValue input)
     {
         float getInputWestButton = input.Get<float>();
-        Debug.Log("West Button: " + getInputWestButton);
+        //Debug.Log("West Button: " + getInputWestButton);
         inputShoot = getInputWestButton;
         
 

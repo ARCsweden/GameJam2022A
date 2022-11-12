@@ -9,6 +9,8 @@ public class HP : MonoBehaviour
     public float MaxHealthPoints = 20;
     private float time_of_last_heal;
     private float heal_period_time = 2.0f;
+    private float time_of_last_fire_damage;
+    private float fire_damage_period_time;
 
     // Start is called before the first frame update
     void Start()
@@ -25,31 +27,34 @@ public class HP : MonoBehaviour
         }
     }
 
-    public void Damage(float damage)
+    /* public void Damage(float damage)
     {
         HealthPoints = HealthPoints - damage * (1 - Armor);
 
+    } */
+
+    public void Damage(float damage)
+    {
+        HealthPoints = HealthPoints - damage * (1 - Armor);
+        Debug.Log("Damaging: " + gameObject.name);
     }
 
     public void Heal(float heal)
     {
-        if (Time.time - time_of_last_heal > heal_period_time)
+        if (HealthPoints + heal <= MaxHealthPoints)
         {
-            if (HealthPoints + heal <= MaxHealthPoints)
-            {
-                HealthPoints = HealthPoints + heal;
-                Debug.Log("Healing");
-            }
-            else
-            {
-                HealthPoints = MaxHealthPoints;
-            }
-            time_of_last_heal = Time.time;
+            HealthPoints = HealthPoints + heal;
+            Debug.Log("Healing: " + gameObject.name);
+        }
+        else
+        {
+            HealthPoints = MaxHealthPoints;
         }
     }
 
     public void Death()
     {
+        Debug.Log("Died: " + gameObject.name);
         Destroy(gameObject);
     }
 }
