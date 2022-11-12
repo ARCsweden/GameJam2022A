@@ -30,6 +30,6 @@ public class HP : MonoBehaviour
 
     public void Death()
     {
-        Destroy(this.GetComponent<GameObject>());
+        Destroy(gameObject);
     }
 }
