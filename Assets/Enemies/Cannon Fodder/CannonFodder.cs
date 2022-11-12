@@ -20,7 +20,7 @@ public class CannonFodder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Players");
+        players = GameObject.FindGameObjectsWithTag("Player");
         escort = GameObject.FindGameObjectsWithTag("Escort");
     }
 
@@ -31,6 +31,7 @@ public class CannonFodder : MonoBehaviour
         FindClosestTarget();
 
         myPosition.LookAt(target.GetComponent<Transform>().position);
+        myPosition.rotation.SetEulerAngles(new Vector3(-90,myPosition.rotation.eulerAngles.y,myPosition.rotation.eulerAngles.z));
         myRigidBody.velocity = myPosition.forward * 2;
     }
 

@@ -29,17 +29,15 @@ public class Bullet : MonoBehaviour
         ContactPoint contact = collision.contacts[0];
         try
         {
-            bool success = contact.otherCollider.GetComponent<HP>().Damage(bullet_damage);
-            if(success){
-                Destroy(gameObject);
-            }
-
+            contact.otherCollider.GetComponent<HP>().Damage(bullet_damage);
+            
         }
         catch (System.Exception)
         {
 
-            throw;
+            //throw;
         }
+        Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
