@@ -35,10 +35,11 @@ public class MapGeneration : MonoBehaviour
 
         TerrainData tD = terrain.terrainData;
 
+        tD.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
         tD.alphamapResolution = imageDim.x;
         tD.SetAlphamaps(0,0,biome);
 
-        Instantiate(terrain);
+        Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity);
     }
 
     Vector2[] GenerateCastle()
@@ -92,8 +93,8 @@ public class MapGeneration : MonoBehaviour
                 {
                     voroni[i].SetPixel(x, y, new Color(0f, 0f, 0f, 1f));
 
-                    if (Vector2.Distance((castlePos[i] + spread + border/2) * imageScale, new Vector2(x, y)) < distance) { index = i; }
-                    distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border / 2) * imageScale, new Vector2(x, y)), distance);
+                    if (Vector2.Distance((castlePos[i] + spread + border) * imageScale, new Vector2(x, y)) < distance) { index = i; }
+                    distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) * imageScale, new Vector2(x, y)), distance);
                 }
 
                 voroni[index].SetPixel(x, y, new Color(circleSize / distance, circleSize / distance, circleSize / distance, 1f));
