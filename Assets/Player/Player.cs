@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
 
     private float inputMoveValueX = 0, inputMoveValueY = 0, inputMoveValueZ = 0;
     private float inputRotValueX = 0, inputRotValueY = 0, inputRotValueZ = 0;
+    private float inputShoot = 0;
+
+    public GameObject bulletPrefab;
+    [SerializeField]
+    Transform bulletSpawn;
 
     private void Start()
     {
@@ -85,5 +90,15 @@ public class Player : MonoBehaviour
         float getInputSouthButton = input.Get<float>();
         Debug.Log("South Button: " + getInputSouthButton);
         inputMoveValueY = getInputSouthButton;
+    }
+
+    void OnShoot(InputValue input)
+    {
+        float getInputWestButton = input.Get<float>();
+        Debug.Log("West Button: " + getInputWestButton);
+        inputShoot = getInputWestButton;
+        
+
+        Instantiate(bulletPrefab, bulletSpawn.position, controller.transform.rotation);
     }
 }
