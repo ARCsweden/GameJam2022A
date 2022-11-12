@@ -6,10 +6,10 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mud
-  m_DiffuseTexture: {fileID: 2800000, guid: 271f856206ea8b045879774c54fe806c, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 7b0e8161686aa0a4faba81c20622b4a5, type: 3}
-  m_MaskMapTexture: {fileID: 2800000, guid: 96953988ee91b694b87992b006367c54, type: 3}
+  m_Name: Volcano
+  m_DiffuseTexture: {fileID: 2800000, guid: b881ee3a2f8e8964598e8a470b7f8174, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 02cc58fea534780439aa3d421aeb324d, type: 3}
+  m_MaskMapTexture: {fileID: 2800000, guid: a28f46e98c12e174e89de36a66d16a31, type: 3}
   m_TileSize: {x: 10, y: 10}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
