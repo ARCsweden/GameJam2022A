@@ -87,7 +87,7 @@ public class Escort : MonoBehaviour
         }
 
 
-        cameraPosition.localPosition = new Vector3(CameraStartPos.x,CameraStartPos.y + playerMaxDist,CameraStartPos.z);
+        cameraPosition.localPosition = new Vector3(CameraStartPos.x, Mathf.Max(CameraStartPos.y, CameraStartPos.y + playerMaxDist) ,CameraStartPos.z);
 
     }
 }

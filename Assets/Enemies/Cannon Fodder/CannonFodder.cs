@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class CannonFodder : MonoBehaviour
 {
+    [SerializeField]
+    float Damage = 1;
 
     [SerializeField]
     Transform myPosition;
+
+    
 
     [SerializeField]
     Rigidbody myRigidBody;
@@ -20,13 +24,15 @@ public class CannonFodder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+       
         escort = GameObject.FindGameObjectsWithTag("Escort");
     }
 
     // Update is called once per frame
     void Update()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
+
         Distance = 1000;
         FindClosestTarget();
 
@@ -56,6 +62,22 @@ public class CannonFodder : MonoBehaviour
             }
         }
 
+    }
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        ContactPoint contact = collision.contacts[0];
+        try
+        {
+            contact.otherCollider.GetComponent<HP>().Damage(Damage);
+
+        }
+        catch (System.Exception)
+        {
+
+            //throw;
+        }
     }
 
 }

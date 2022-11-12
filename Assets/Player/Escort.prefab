@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 5849738724025743750}
   - component: {fileID: 5594677793446438120}
   - component: {fileID: 3276080344285555703}
+  - component: {fileID: 6026194416449621949}
   m_Layer: 0
   m_Name: Escort
   m_TagString: Untagged
@@ -348,6 +349,21 @@ MonoBehaviour:
   escortPrefab: {fileID: 6218672104742779623}
   players: []
   cameraPosition: {fileID: 0}
+--- !u!114 &6026194416449621949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6218672104742779623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0acce60fb4e6d21489722148fae4343e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterPrefab: {fileID: 4340278938611940551, guid: d394abfc851f0944e879ca8ee2dd63db, type: 3}
+  myPos: {fileID: 4884728039688433684}
+  minDistanceSpawn: 20
 --- !u!1 &7471252326110197201
 GameObject:
   m_ObjectHideFlags: 0

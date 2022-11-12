@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         time_start = Time.time;
         myRig.AddForce(gameObject.transform.forward * bullet_speed, ForceMode.Impulse);
-        Destroy(gameObject, 10);
+        Destroy(gameObject, 3);
 
     }
 
