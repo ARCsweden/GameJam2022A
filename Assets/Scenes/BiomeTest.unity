@@ -388,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castle: {fileID: 6834853530585761061, guid: bf021aee590e6a2479513a0d2379d07c, type: 3}
+  terrain: {fileID: 888517949894727477, guid: 51b5f85b8b8c4d941983f3ed7afce627, type: 3}
   itemsToPlace: 6
   spread: {x: 20, y: 20}
   minimunDistance: 10
@@ -467,11 +468,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943016299}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
