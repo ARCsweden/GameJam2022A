@@ -31,15 +31,30 @@ public class MapGeneration : MonoBehaviour
 
         float[,,] biome = GenerateBiome(castlePos);
 
-        //GetComponent<SpriteRenderer>().sprite = Sprite.Create(biome[1], new Rect(0.0f, 0.0f, biome[1].width, biome[1].height), new Vector2(0.5f, 0.5f), imageScale);
-
-        TerrainData tD = terrain.terrainData;
-
-        tD.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
-        tD.alphamapResolution = imageDim.x;
-        tD.SetAlphamaps(0,0,biome);
+        terrain.terrainData.size = new Vector3(2*(spread.x + border.x), 600, 2*(spread.y + border.y));
+        terrain.terrainData.alphamapResolution = imageDim.x;
+        terrain.terrainData.SetAlphamaps(0,0,biome);
 
         Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity);
+
+        float[,,] chance = GenerateChanceMaps(biome);
+
+        //GetComponent<SpriteRenderer>().sprite = Sprite.Create(biome[1], new Rect(0.0f, 0.0f, biome[1].width, biome[1].height), new Vector2(0.5f, 0.5f), imageScale);
+
+
+        /*Texture2D picture = new Texture2D(imageDim.x, imageDim.y);
+
+        for (int x = 0; x < imageDim.x; x++)
+        {
+            for (int y = 0; y < imageDim.y; y++)
+            {
+                picture.SetPixel(x,y,new Color(biome[x, y, 1], biome[x, y, 1], biome[x, y, 1],1f));
+            }
+        }
+
+        picture.Apply();
+
+        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), imageScale);*/
     }
 
     Vector2[] GenerateCastle()
@@ -125,5 +140,27 @@ public class MapGeneration : MonoBehaviour
 
         return map;
     }
+
+    //generates a map that is a combination of PerlinNoise and biome
+    //to get it to game coordinats scale with imageScale
+    float[,,] GenerateChanceMaps(float[,,] biome) 
+    {
+
+        for (int i = 0; i < itemsToPlace; i++)
+        {
+
+            for (int x = 0; x < imageDim.x; x++)
+            {
+                for (int y = 0; y < imageDim.y; y++)
+                {
+                    biome[x,y,i] = Mathf.PerlinNoise(2f / imageScale * x, 2f / imageScale * y) * biome[x, y, 1];
+                }
+            }
+
+        }
+
+        return biome;
+    }
+
 
 }
