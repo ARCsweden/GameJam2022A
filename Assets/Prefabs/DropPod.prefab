@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516c5136be033ee4b91f2ac8a172c547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Force: 100
+  Force: 60
   Payload: {fileID: 0}
   dropodRB: {fileID: 3451916875341697789}
   dropodTrans: {fileID: 6328570622447883266}

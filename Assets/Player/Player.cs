@@ -85,8 +85,7 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<CharacterController>().enabled = true;
         activeMenuItem = 0;
 
-        attachedWeapon = Instantiate(Machinegun);
-        //attachedWeapon.GetComponent<Fire>().RemoveTrigger();
+        Instantiate(Machinegun, PlayerTransform);
     }
 
     private void FixedUpdate()
@@ -215,7 +214,7 @@ public class Player : MonoBehaviour
                 }
 
                 newPod.transform.LookAt(GameObject.FindGameObjectWithTag("Escort").transform.position);
-                newPod.GetComponent<Rigidbody>().velocity = Vector3.up * 150;
+                newPod.GetComponent<Rigidbody>().velocity = Vector3.up * 75;
             }
             
 

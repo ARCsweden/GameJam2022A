@@ -60,7 +60,15 @@ public class Fire : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            //Destroy(other.GetComponent<Player>().attachedWeapon, 0f);
+            if (other.GetComponent<Player>().attachedWeapon != null)
+            {
+                if (other.GetComponent<Player>().attachedWeapon != gameObject)
+                {
+                    Destroy(other.GetComponent<Player>().attachedWeapon, 0f);
+                }
+                
+            }
+            
 
             transform.SetParent(other.transform);
             transform.position = other.transform.position + new Vector3(0.5f, 0.5f, 0);
