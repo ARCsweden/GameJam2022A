@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Escort : MonoBehaviour
 {
+    public GameObject TargetCastle;
+    
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
@@ -29,11 +31,60 @@ public class Escort : MonoBehaviour
         CameraStartPos = cameraPosition.localPosition;
         controller = gameObject.GetComponent<CharacterController>();
 
+        findFurthestCastle();
+    }
+
+    void findFurthestCastle()
+    {
+        GameObject[] FindCastles = GameObject.FindGameObjectsWithTag("Castle");
+        float FurthestCastle = 999 * 999;
+
+        foreach (GameObject castle in FindCastles)
+        {
+            if (Vector3.Distance(castle.transform.position,gameObject.transform.position) < FurthestCastle)
+            {
+                TargetCastle = castle;
+            }
+        }
+
     }
 
     void Update()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        if (TargetCastle == null)
+        {
+            findFurthestCastle();
+        }
+
+        GameObject[] getAllPlayers = GameObject.FindGameObjectsWithTag("Player");
+        int alivePlayers = 0;
+
+
+        foreach (var item in getAllPlayers)
+        {
+            if (item.GetComponent<Player>().Alive)
+            {
+                alivePlayers++;
+            }
+        }
+        int arrayCounter = 0;
+
+        if (alivePlayers>0)
+        {
+            players = new GameObject[alivePlayers];
+
+            foreach (var item in getAllPlayers)
+            {
+                if (item.GetComponent<Player>().Alive)
+                {
+                    alivePlayers++;
+                    players[arrayCounter] = item;
+                    arrayCounter++;
+                }
+            }
+        }
+
+        //players = GameObject.FindGameObjectsWithTag("Player");
 
         playersSumX = 0;
         playersSumZ = 0;
