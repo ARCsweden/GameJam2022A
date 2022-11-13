@@ -1929,6 +1929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPoints: 1
   Armor: 0.75
+  MaxHealthPoints: 20
 --- !u!1 &8550466909036166879
 GameObject:
   m_ObjectHideFlags: 0

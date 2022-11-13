@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4a81e745e4a64459d6547f55a1086d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 1
   myPosition: {fileID: 3994714990448911997}
   myRigidBody: {fileID: 9129650736736565692}
 --- !u!64 &5796213551997010951
@@ -145,3 +146,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthPoints: 1
   Armor: 0.75
+  MaxHealthPoints: 20

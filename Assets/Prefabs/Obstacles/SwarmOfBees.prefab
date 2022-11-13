@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4016656008290030535}
   - component: {fileID: 2603809884208501999}
   - component: {fileID: 4409624771141061340}
+  - component: {fileID: -7071631050161858324}
   m_Layer: 0
   m_Name: SwarmOfBees
   m_TagString: Untagged
@@ -98,3 +99,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &-7071631050161858324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111565265571379971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12922ad3398f9974badcef7ee0a5766b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
