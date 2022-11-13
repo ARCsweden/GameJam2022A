@@ -7,10 +7,6 @@ public class HP : MonoBehaviour
     public float HealthPoints = 1;
     public float Armor = 0.75f;
     public float MaxHealthPoints = 20;
-    private float time_of_last_heal;
-    private float heal_period_time = 2.0f;
-    private float time_of_last_fire_damage;
-    private float fire_damage_period_time;
 
     // Start is called before the first frame update
     void Start()
