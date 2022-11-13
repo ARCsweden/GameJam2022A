@@ -49,20 +49,23 @@ public class DropPod : MonoBehaviour
             dropodRB.velocity = new Vector3(0, 0, 0);
             dropodRB.angularVelocity = new Vector3(0, 0, 0);
 
-
-            if (!Payload.GetComponent<Player>().Alive)
+            try
             {
-                Payload.transform.position = dropodTrans.position + new Vector3(0, 5, 0);
-                Payload.GetComponent<CharacterController>().enabled = false;
-                Payload.transform.position = dropodTrans.position + new Vector3(0, 5, 0);
-                Debug.Log("moving player to" + dropodTrans.position + new Vector3(0, 5, 0));
-                Payload.GetComponent<Player>().Alive = true;
-                Payload.GetComponent<CharacterController>().enabled = true;
+                if (!Payload.GetComponent<Player>().Alive)
+                {
+                    Payload.transform.position = dropodTrans.position + new Vector3(0, 5, 0);
+                    Payload.GetComponent<CharacterController>().enabled = false;
+                    Payload.transform.position = dropodTrans.position + new Vector3(0, 5, 0);
+                    Debug.Log("moving player to" + dropodTrans.position + new Vector3(0, 5, 0));
+                    Payload.GetComponent<Player>().Alive = true;
+                    Payload.GetComponent<CharacterController>().enabled = true;
+                }
             }
-            else
+            catch (System.Exception)
             {
                 GameObject payload = Instantiate(Payload);
                 payload.transform.position = dropodTrans.position + new Vector3(0, 5, 0);
+                //throw;
             }
             Landed = true;
         }

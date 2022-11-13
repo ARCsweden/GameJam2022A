@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GunBullet : MonoBehaviour
 {
-    private CharacterController controller;
-    [SerializeField]
-    Rigidbody myRig;
     private float time_start;
     private float bullet_lifetime = 3.0f;
     public float baseSpeed = 10.0f;
@@ -23,7 +20,7 @@ public class GunBullet : MonoBehaviour
 
         //controller = gameObject.GetComponent<CharacterController>();
         time_start = Time.time;
-        myRig.AddForce(gameObject.transform.forward * speed, ForceMode.Impulse);
+        gameObject.GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * speed, ForceMode.Impulse);
         Destroy(gameObject, bullet_lifetime);
 
     }

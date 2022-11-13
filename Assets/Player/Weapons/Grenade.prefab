@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5942328128302858448}
   - component: {fileID: 3944448476078218341}
   - component: {fileID: 7095586188634325460}
-  - component: {fileID: 4118697647803456623}
-  - component: {fileID: 8318699376753603632}
+  - component: {fileID: 3731920978974275652}
+  - component: {fileID: 7199085157233630768}
   m_Layer: 0
-  m_Name: Machine Gun Bullet
+  m_Name: Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4118697647803456623
+--- !u!114 &3731920978974275652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,14 +108,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4015106401689666519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e10b1715f718c449b9b16888e06b2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f6ae9ef372e93b46a8d476af53c3204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 10
   levelSpeed: 0
   baseDamage: 1
   levelDamage: 1
---- !u!54 &8318699376753603632
+  baseArea: 3
+  levelArea: 1
+--- !u!54 &7199085157233630768
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

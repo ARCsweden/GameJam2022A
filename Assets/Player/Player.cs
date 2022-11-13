@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     TMP_Text levelText;
 
-    int points;
+    public int points;
     float Timer;
 
     [SerializeField]
@@ -84,6 +84,8 @@ public class Player : MonoBehaviour
         PlayerTransform.position = GameObject.FindGameObjectWithTag("Escort").transform.position + new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
         gameObject.GetComponent<CharacterController>().enabled = true;
         activeMenuItem = 0;
+
+        attachedWeapon = Instantiate(Machinegun);
     }
 
     private void FixedUpdate()
@@ -170,7 +172,7 @@ public class Player : MonoBehaviour
                 menuOpen = false;
                 playerMenu.gameObject.SetActive(false);
                 Level++;
-                levelText.text = "Level " + Level.ToString();
+                levelText.text = Level.ToString();
             }
             else
             {
@@ -333,7 +335,8 @@ public class Player : MonoBehaviour
 
             try
             {
-                Instantiate(bulletPrefab, bulletSpawn.position, controller.transform.rotation);
+                attachedWeapon.GetComponent<Fire>().BANG();
+                //Instantiate(bulletPrefab, bulletSpawn.position, controller.transform.rotation);
             }
             catch (System.Exception)
             {

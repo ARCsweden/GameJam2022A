@@ -113,13 +113,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 4015106401689666519, guid: 24b92b03f06b7b04885efd67a5c10328, type: 3}
-  bulletSpawn: {fileID: 0}
-  baseFiringSpeed: 1
-  levelFiringSpeed: 1
+  baseFiringSpeed: 0
+  levelFiringSpeed: 0
   baseSpread: 0
   levelSpread: 0
   baseAmount: 1
-  levelAmount: 1
+  levelAmount: 0
 --- !u!135 &2311044807304798630
 SphereCollider:
   m_ObjectHideFlags: 0

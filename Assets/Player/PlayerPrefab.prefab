@@ -1888,8 +1888,11 @@ MonoBehaviour:
   Level: 0
   Alive: 0
   DropPod: {fileID: 6672164074174467768, guid: eccfe935ef12080439ac7d225f66c6aa, type: 3}
+  Shotgun: {fileID: 5176549492511427484, guid: 97fa1d153a6771e4f9201f279e921b9a, type: 3}
+  Machinegun: {fileID: 5176549492511427484, guid: 59f8e8cd149fc204d9b1b82ace986d5f, type: 3}
+  GrenadeLauncher: {fileID: 5176549492511427484, guid: 2bd930179c6950b4cb8263b3a015f013, type: 3}
   pointsText: {fileID: 1714059007654752257}
-  levelText: {fileID: 0}
+  levelText: {fileID: 6871215016574764644}
   activeMenuItem: 0
   BuySpots:
   - {fileID: 7660680160343509887}
@@ -1901,6 +1904,7 @@ MonoBehaviour:
   playerMenu: {fileID: 1827341664352646500}
   PlayerTransform: {fileID: 51236506130501673}
   playerSpeed: 8
+  attachedWeapon: {fileID: 0}
   bulletPrefab: {fileID: 3246174362391313761, guid: 3145b43f0db597e4888e96b9dccd0a0f, type: 3}
   bulletSpawn: {fileID: 1799453681843077092}
 --- !u!54 &1544550719594150596
@@ -1932,9 +1936,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisGameObject: {fileID: 7446403665923773514}
+  MaxHealthPoints: 20
   HealthPoints: 1
   Armor: 0.75
-  MaxHealthPoints: 20
 --- !u!1 &8550466909036166879
 GameObject:
   m_ObjectHideFlags: 0

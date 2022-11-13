@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3944448476078218341}
   - component: {fileID: 7095586188634325460}
   - component: {fileID: 4118697647803456623}
-  - component: {fileID: 8318699376753603632}
+  - component: {fileID: 4751452262756463274}
   m_Layer: 0
-  m_Name: Machine Gun Bullet
+  m_Name: Shotgun Pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,9 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 10
   levelSpeed: 0
-  baseDamage: 1
-  levelDamage: 1
---- !u!54 &8318699376753603632
+  baseDamage: 0.5
+  levelDamage: 0.25
+--- !u!54 &4751452262756463274
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

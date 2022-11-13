@@ -5,8 +5,6 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     public GameObject bullet;
-    [SerializeField]
-    Transform bulletSpawn;
 
     public float baseFiringSpeed = 1f;
     public float levelFiringSpeed = 1f;
@@ -18,7 +16,7 @@ public class Fire : MonoBehaviour
     public float levelAmount = 1f;
 
     // Start is called before the first frame update
-    void Start()
+    public void BANG()
     {
         int level = GetComponentInParent<Player>().Level;
 
@@ -29,7 +27,7 @@ public class Fire : MonoBehaviour
         {
             for(int i = 1; i <= amount; i++)
             {
-                Instantiate(bullet, bulletSpawn.position, transform.rotation * new Quaternion(0, Random.Range(0, spread), 0, 0), transform);
+                Instantiate(bullet, gameObject.transform.position + gameObject.transform.forward, transform.rotation * new Quaternion(0, Random.Range(0, spread), 0, 0), transform);
             }
         }
         catch (System.Exception)
@@ -38,6 +36,9 @@ public class Fire : MonoBehaviour
             //throw;
         }
     }
+
+
+
 
     private void OnTriggerEnter(Collider other)
     {
