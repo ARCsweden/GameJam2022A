@@ -200,6 +200,7 @@ public class MapGeneration : MonoBehaviour
     void PlaceObjects(float[,,] chance, GameObject[] objects)
     {
 
+        // generate obstacles
         for (int i = 0; i < itemsToPlace + 1; i++)
         {
             for (int x = 0; x < imageDim.x; x++)
@@ -210,6 +211,17 @@ public class MapGeneration : MonoBehaviour
                     {
                         Instantiate(objects[i * 3 + UnityEngine.Random.Range(0, 2)], new Vector3(x * imageScale - (spread.x + border.x), 0, y * imageScale - (spread.y + border.y)), Quaternion.identity, transform);
                     }
+                }
+            }
+        }
+
+        for (int x = 0; x < imageDim.x; x++)
+        {
+            for (int y = 0; y < imageDim.y; y++)
+            {
+                if (UnityEngine.Random.Range(-5, chance[x, y, 6]) > threshold)
+                {
+                    Instantiate(objects[21], new Vector3(x * imageScale - (spread.x + border.x), 0, y * imageScale - (spread.y + border.y)), Quaternion.identity, transform);
                 }
             }
         }
