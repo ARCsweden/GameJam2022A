@@ -17,7 +17,8 @@ public class GunBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int level = GetComponentInParent(typeof(Player)).Level;
+        int level = GetComponentInParent<Player>().Level;
+        //int level = GetComponentInParent(typeof(Player)).Level;
         float speed = baseSpeed + levelSpeed * level;
 
         //controller = gameObject.GetComponent<CharacterController>();
@@ -29,7 +30,7 @@ public class GunBullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        int level = GetComponentInParent(typeof(Player)).Level;
+        int level = GetComponentInParent<Player>().Level;
 
         float damage = baseDamage + levelDamage + level;
 

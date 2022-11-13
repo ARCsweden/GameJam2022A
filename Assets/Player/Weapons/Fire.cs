@@ -20,7 +20,7 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int level = GetComponentInParent(typeof(Player)).Level;
+        int level = GetComponentInParent<Player>().Level;
 
         float spread = baseSpread + levelSpread * level;
         int amount = (int)(baseAmount + levelAmount * level);
