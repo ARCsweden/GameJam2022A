@@ -724,6 +724,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6026194416449621949, guid: 33f029f5d0bc50743a69cabc3ed1d8dc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6218672104742779623, guid: 33f029f5d0bc50743a69cabc3ed1d8dc, type: 3}
       propertyPath: m_Name
       value: Escort
