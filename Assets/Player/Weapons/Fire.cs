@@ -27,7 +27,20 @@ public class Fire : MonoBehaviour
         {
             for(int i = 1; i <= amount; i++)
             {
-                Instantiate(bullet, gameObject.transform.position + gameObject.transform.forward, transform.rotation * new Quaternion(0, Random.Range(0, spread), 0, 0), transform);
+
+                if(gameObject.name.Contains("Machine"))
+                {
+                    Instantiate(bullet, transform.position + transform.forward, transform.rotation).GetComponent<GunBullet>().level = level;
+                }
+                else if (gameObject.name.Contains("Shotgun"))
+                {
+                    Instantiate(bullet, transform.position + transform.forward, transform.rotation).GetComponent<GunBullet>().level = level;
+                }
+                if (gameObject.name.Contains("Grenade"))
+                {
+                    Instantiate(bullet, transform.position + transform.forward, transform.rotation).GetComponent<GrenadeBullet>().level = level;
+                }
+
             }
         }
         catch (System.Exception)
@@ -37,15 +50,20 @@ public class Fire : MonoBehaviour
         }
     }
 
-
+    public void RemoveTrigger()
+    {
+        Destroy(GetComponent<SphereCollider>(), 0f);
+    }
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            //Destroy(other.GetComponent<Player>().attachedWeapon, 0f);
+
             transform.SetParent(other.transform);
-            transform.position = other.transform.position + new Vector3(0.5f, 1, 0);
+            transform.position = other.transform.position + new Vector3(0.5f, 0.5f, 0);
             other.GetComponent<Player>().attachedWeapon = gameObject;
 
             Destroy(GetComponent<SphereCollider>(), 0f);
