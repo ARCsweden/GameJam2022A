@@ -126,7 +126,7 @@ class LinearBlur
 
     Color CalcPixelFromSum()
     {
-        return new Color((_rSum / _windowSize - 0.25f)*1.5f, (_gSum / _windowSize - 0.25f)*1.5f, (_bSum / _windowSize - 0.25f)*1.5f);
+        return new Color((_rSum / _windowSize - 0.35f)*1.7f, (_gSum / _windowSize - 0.35f)*1.7f, (_bSum / _windowSize - 0.35f)*1.7f);
         //return new Color(_rSum / _windowSize, _gSum / _windowSize, _bSum / _windowSize);
     }
 }

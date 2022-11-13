@@ -15,6 +15,7 @@ public class MapGeneration : MonoBehaviour
 
     public GameObject castle;
     public Terrain terrain;
+    public GameObject[] obstacles = new GameObject[22];
 
     public int itemsToPlace = 6;
     public Vector2Int spread = new Vector2Int(500, 500);
@@ -24,6 +25,8 @@ public class MapGeneration : MonoBehaviour
     public int imageScale = 20;
     public int blurSize = 2;
     public int circleSize = 5;
+
+    public float threshold = 0.5f;
 
     //private Vector2[] castlePos = new Vector2[itemsToPlace];
     private Vector2Int imageDim;
@@ -44,15 +47,16 @@ public class MapGeneration : MonoBehaviour
         terrain.terrainData.alphamapResolution = imageDim.x;
         terrain.terrainData.SetAlphamaps(0,0,biome);
 
-        Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity);
+        Instantiate(terrain,new Vector3(-(spread.x + border.x),0, -(spread.y + border.y)), Quaternion.identity, transform);
 
         chance = GenerateChanceMaps(biome);
 
         //GetComponent<SpriteRenderer>().sprite = Sprite.Create(biome[1], new Rect(0.0f, 0.0f, biome[1].width, biome[1].height), new Vector2(0.5f, 0.5f), imageScale);
 
         UpdateSprite();
-        
-        
+
+        PlaceObjects(chance, obstacles);
+
     }
 
 
@@ -78,7 +82,7 @@ public class MapGeneration : MonoBehaviour
         }
 
         picture.Apply();
-        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), imageScale);
+        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), 1f/imageScale);
 
      }
 
@@ -101,7 +105,7 @@ public class MapGeneration : MonoBehaviour
             if (distance >= minimunDistance || tries > 50)
             {
                 position.Add(next);
-                Instantiate(castle, new Vector3(next.x, 0, next.y), Quaternion.identity);
+                Instantiate(castle, new Vector3(next.x, 0, next.y), Quaternion.identity, transform);
                 toGenerate--;
             }
 
@@ -140,7 +144,7 @@ public class MapGeneration : MonoBehaviour
                     distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) / imageScale, new Vector2(x, y)), distance);
                 }
 
-                voroni[index].SetPixel(x, y, new Color(circleSize / distance, circleSize / distance, circleSize / distance, 1f));
+                voroni[index].SetPixel(x, y, new Color(circleSize / (distance * imageScale), circleSize / (distance * imageScale), circleSize / (distance * imageScale), 1f));
             }
         }
 
@@ -148,7 +152,7 @@ public class MapGeneration : MonoBehaviour
 
         for (int i = 0; i < itemsToPlace; i++)
         {
-            voroni[i] = blur.Blur(voroni[i], blurSize, 1);
+            voroni[i] = blur.Blur(voroni[i], blurSize / imageScale, 1);
 
             voroni[i].Apply();   
         }
@@ -184,7 +188,7 @@ public class MapGeneration : MonoBehaviour
             {
                 for (int y = 0; y < imageDim.y; y++)
                 {
-                    map[x,y,i] = Mathf.PerlinNoise(0.03f / imageScale * x, 0.03f / imageScale * y) * map[x, y, i];
+                    map[x,y,i] = Mathf.PerlinNoise(imageScale * x / 20f, imageScale * y / 20f) * map[x, y, i];
                 }
             }
 
@@ -193,5 +197,21 @@ public class MapGeneration : MonoBehaviour
         return map;
     }
 
+    void PlaceObjects(float[,,] chance, GameObject[] objects)
+    {
 
+        for (int i = 0; i < itemsToPlace + 1; i++)
+        {
+            for (int x = 0; x < imageDim.x; x++)
+            {
+                for (int y = 0; y < imageDim.y; y++)
+                {
+                    if(UnityEngine.Random.Range(-1, chance[x,y,i]) > threshold)
+                    {
+                        Instantiate(objects[i * 3 + UnityEngine.Random.Range(0, 2)], new Vector3(x * imageScale - (spread.x + border.x), 0, y * imageScale - (spread.y + border.y)), Quaternion.identity, transform);
+                    }
+                }
+            }
+        }
+    }
 }
