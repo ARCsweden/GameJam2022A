@@ -6,19 +6,20 @@ public class HP : MonoBehaviour
 {
     public GameObject ThisGameObject;
 
+    public float MaxHealthPoints = 20;
     public float HealthPoints = 1;
     public float Armor = 0.75f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(HealthPoints <= 0)
+        if (HealthPoints <= 0)
         {
             Death();
         }
@@ -30,9 +31,19 @@ public class HP : MonoBehaviour
 
     }
 
+    public void Heal(float heal)
+    {
+        if (HealthPoints + heal > MaxHealthPoints){
+            HealthPoints = MaxHealthPoints;
+        }
+        else {
+            HealthPoints = HealthPoints + heal;
+        }
+    }
+
     public void Death()
     {
-        
+
 
         if (ThisGameObject.tag == "Player")
         {
