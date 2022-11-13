@@ -10,8 +10,8 @@ public class CannonFodder : MonoBehaviour
     [SerializeField]
     Transform myPosition;
 
-    [SerializeField]
-    float Speed;
+    //[SerializeField]
+    public float Speed;
 
 
     [SerializeField]

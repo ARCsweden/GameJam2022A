@@ -28,7 +28,6 @@ public class HP : MonoBehaviour
     public void Damage(float damage)
     {
         HealthPoints = HealthPoints - damage * (1 - Armor);
-
     }
 
     public void Heal(float heal)

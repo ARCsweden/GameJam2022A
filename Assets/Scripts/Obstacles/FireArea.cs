@@ -8,43 +8,27 @@ public class FireArea : MonoBehaviour
     private float damage = 1.0f;
     private float fire_last_time;
     private float fire_time_period = 2.0f;
-    public List<Collider> listOfObjects;
+    public List<GameObject> listOfObjects;
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    /*     void OnTriggerStay(Collider collision)
-        {
-            if (Time.time - fire_last_time > fire_time_period)
-            {
-                try
-                {
-                    collision.gameObject.GetComponent<HP>().Damage(damage);
-                    fire_last_time = Time.time;
-                    //Debug.Log("Fire: " + collision.gameObject.name);
-                }
-                catch (System.Exception)
-                {
-                    //throw;
-                }
-            }
-        } */
-
     void OnTriggerEnter(Collider col)
     {
-        if (!listOfObjects.Contains(col) && (col.CompareTag("Player") || col.CompareTag("Enemy")))
+        if (!listOfObjects.Contains(col.gameObject) && (col.CompareTag("Player") || col.CompareTag("Enemy")))
         {
-            listOfObjects.Add(col);
-            Debug.Log("Adding: " + col.name);
+            listOfObjects.Add(col.gameObject);
+            //Debug.Log("Adding: " + col.name);
         }
     }
     void OnTriggerExit(Collider col)
     {
-        if (listOfObjects.Contains(col))
+        if (listOfObjects.Contains(col.gameObject))
         {
-            listOfObjects.Remove(col);
+            listOfObjects.Remove(col.gameObject);
+            //Debug.Log("Removing: " + col.name);
         }
     }
     // Update is called once per frame
@@ -52,15 +36,15 @@ public class FireArea : MonoBehaviour
     {
         if (listOfObjects.Count > 0)
         {
-            foreach (Collider obj in listOfObjects)
+            foreach (GameObject obj in listOfObjects)
             {
                 if (Time.time - fire_last_time > fire_time_period)
                 {
                     try
                     {
-                        obj.gameObject.GetComponent<HP>().Damage(damage);
+                        Debug.Log("Fire damage: " + obj.name);
+                        obj.GetComponent<HP>().Damage(damage);
                         fire_last_time = Time.time;
-                        //Debug.Log("Fire: " + collision.gameObject.name);
                     }
                     catch (System.Exception)
                     {

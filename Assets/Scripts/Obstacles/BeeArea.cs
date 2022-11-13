@@ -20,7 +20,7 @@ public class BeeArea : MonoBehaviour
         if (!listOfObjects.Contains(col) && (col.CompareTag("Player") || col.CompareTag("Enemy")))
         {
             listOfObjects.Add(col);
-            Debug.Log("Adding: " + col.name);
+            //Debug.Log("Adding: " + col.name);
         }
     }
     void OnTriggerExit(Collider col)
@@ -28,28 +28,10 @@ public class BeeArea : MonoBehaviour
         if (listOfObjects.Contains(col))
         {
             listOfObjects.Remove(col);
+            //Debug.Log("Removing: " + col.name);
         }
     }
 
-    /*     void OnTriggerStay(Collision collision)
-        {
-            foreach (ContactPoint contact in collision)
-            {
-                if (Time.time - damage_last_time > damage_time_period)
-                {
-                    try
-                    {
-                        contact.otherCollider.GetComponent<HP>().Damage(damage);
-                        damage_last_time = Time.time;
-                    }
-                    catch (System.Exception)
-                    {
-                        //throw;
-                    }
-                }
-            }
-        } */
-    // Update is called once per frame
     void Update()
     {
         if (listOfObjects.Count > 0)
@@ -60,6 +42,7 @@ public class BeeArea : MonoBehaviour
                 {
                     try
                     {
+                        Debug.Log("Bee damage: " + obj.name);
                         obj.GetComponent<HP>().Damage(damage);
                         damage_last_time = Time.time;
                     }
