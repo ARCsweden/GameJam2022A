@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject DropPod;
 
+    [SerializeField]
+    GameObject Shotgun;
+    [SerializeField]
+    GameObject Machinegun;
+    [SerializeField]
+    GameObject GrenadeLauncher;
+
     int[] costTable;
 
 
@@ -179,13 +186,16 @@ public class Player : MonoBehaviour
                 switch (activeMenuItem)
                 {
                     case 4:
-
+                        Debug.Log("Deploying Grenade launcher");
+                        newPod.GetComponent<DropPod>().Payload = GrenadeLauncher;
                         break;
                     case 3:
-
+                        Debug.Log("Deploying Machinegun");
+                        newPod.GetComponent<DropPod>().Payload = Machinegun;
                         break;
                     case 2:
-
+                        Debug.Log("Deploying Shotgun");
+                        newPod.GetComponent<DropPod>().Payload = Shotgun;
                         break;
                     case 1:
 
