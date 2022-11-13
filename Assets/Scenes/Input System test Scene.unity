@@ -360,8 +360,8 @@ MonoBehaviour:
   border: {x: 100, y: 100}
   minimunDistance: 100
   imageScale: 5
-  blurSize: 20
-  circleSize: 20
+  blurSize: 50
+  circleSize: 75
 --- !u!4 &1809435584
 Transform:
   m_ObjectHideFlags: 0

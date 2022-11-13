@@ -140,7 +140,7 @@ public class MapGeneration : MonoBehaviour
                     distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) / imageScale, new Vector2(x, y)), distance);
                 }
 
-                voroni[index].SetPixel(x, y, new Color(circleSize / distance, circleSize / distance, circleSize / distance, 1f));
+                voroni[index].SetPixel(x, y, new Color(circleSize / (distance * imageScale), circleSize / (distance * imageScale), circleSize / (distance * imageScale), 1f));
             }
         }
 
@@ -148,7 +148,7 @@ public class MapGeneration : MonoBehaviour
 
         for (int i = 0; i < itemsToPlace; i++)
         {
-            voroni[i] = blur.Blur(voroni[i], blurSize, 1);
+            voroni[i] = blur.Blur(voroni[i], blurSize / imageScale, 1);
 
             voroni[i].Apply();   
         }
