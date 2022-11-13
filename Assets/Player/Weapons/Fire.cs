@@ -39,4 +39,17 @@ public class Fire : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            transform.SetParent(other.transform);
+            transform.position = other.transform.position + new Vector3(0.5f, 1, 0);
+            other.GetComponent<Player>().attachedWeapon = gameObject;
+
+            Destroy(GetComponent<SphereCollider>(), 0f);
+
+        }
+    }
+
 }

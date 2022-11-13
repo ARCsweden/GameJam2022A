@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     private float inputRotValueX = 0, inputRotValueZ = 0;
     private float inputShoot = 0;
 
+    public GameObject attachedWeapon;
+
     public GameObject bulletPrefab;
     [SerializeField]
     Transform bulletSpawn;
