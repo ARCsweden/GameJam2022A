@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class GrenadeBullet : MonoBehaviour
 {
-    private CharacterController controller;
-    [SerializeField]
-    Rigidbody myRig;
     private float time_start;
     private float bullet_lifetime = 3.0f;
     public float baseSpeed = 10.0f;
@@ -16,22 +13,22 @@ public class GrenadeBullet : MonoBehaviour
     public float baseArea = 1.0f;
     public float levelArea = 1.0f;
 
+    public int level = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        int level = GetComponentInParent<Player>().Level;
         float speed = baseSpeed + levelSpeed * level;
 
         //controller = gameObject.GetComponent<CharacterController>();
         time_start = Time.time;
-        myRig.AddForce(gameObject.transform.forward * speed, ForceMode.Impulse);
+        gameObject.GetComponent<Rigidbody>().AddForce(transform.forward * speed, ForceMode.Impulse);
         Destroy(gameObject, bullet_lifetime);
 
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        int level = GetComponentInParent<Player>().Level;
 
         float damage = baseDamage + levelDamage * level;
         float area = baseArea + levelArea * level;

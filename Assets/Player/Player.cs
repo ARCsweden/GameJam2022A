@@ -12,6 +12,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     GameObject DropPod;
 
+    [SerializeField]
+    GameObject Shotgun;
+    [SerializeField]
+    GameObject Machinegun;
+    [SerializeField]
+    GameObject GrenadeLauncher;
+
     int[] costTable;
 
 
@@ -53,6 +60,8 @@ public class Player : MonoBehaviour
     private float inputRotValueX = 0, inputRotValueZ = 0;
     private float inputShoot = 0;
 
+    public GameObject attachedWeapon;
+
     public GameObject bulletPrefab;
     [SerializeField]
     Transform bulletSpawn;
@@ -75,6 +84,8 @@ public class Player : MonoBehaviour
         PlayerTransform.position = GameObject.FindGameObjectWithTag("Escort").transform.position + new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
         gameObject.GetComponent<CharacterController>().enabled = true;
         activeMenuItem = 0;
+
+        attachedWeapon = Instantiate(Machinegun);
     }
 
     private void FixedUpdate()
@@ -161,7 +172,7 @@ public class Player : MonoBehaviour
                 menuOpen = false;
                 playerMenu.gameObject.SetActive(false);
                 Level++;
-                levelText.text = "Level " + Level.ToString();
+                levelText.text = Level.ToString();
             }
             else
             {
@@ -179,13 +190,16 @@ public class Player : MonoBehaviour
                 switch (activeMenuItem)
                 {
                     case 4:
-
+                        Debug.Log("Deploying Grenade launcher");
+                        newPod.GetComponent<DropPod>().Payload = GrenadeLauncher;
                         break;
                     case 3:
-
+                        Debug.Log("Deploying Machinegun");
+                        newPod.GetComponent<DropPod>().Payload = Machinegun;
                         break;
                     case 2:
-
+                        Debug.Log("Deploying Shotgun");
+                        newPod.GetComponent<DropPod>().Payload = Shotgun;
                         break;
                     case 1:
 
@@ -321,7 +335,8 @@ public class Player : MonoBehaviour
 
             try
             {
-                Instantiate(bulletPrefab, bulletSpawn.position, controller.transform.rotation);
+                attachedWeapon.GetComponent<Fire>().BANG();
+                //Instantiate(bulletPrefab, bulletSpawn.position, controller.transform.rotation);
             }
             catch (System.Exception)
             {

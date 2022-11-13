@@ -50,7 +50,7 @@ public class HP : MonoBehaviour
             ThisGameObject.GetComponent<Player>().Alive = false;
             ThisGameObject.GetComponent<CharacterController>().enabled = false;
             ThisGameObject.GetComponent<Player>().enabled = false;
-            ThisGameObject.transform.position = new Vector3(0, 104, 0);
+            ThisGameObject.transform.position = new Vector3(0, -3, 0);
         }
         else if (ThisGameObject.tag == "Enemy")
         {

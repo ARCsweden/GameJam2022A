@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4574230511477935061}
   - component: {fileID: 2311044807304798630}
   m_Layer: 0
-  m_Name: Machine Gun
+  m_Name: Grenade Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -112,9 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f909d02acfdb194b81499b611f3efe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 4015106401689666519, guid: 24b92b03f06b7b04885efd67a5c10328, type: 3}
-  baseFiringSpeed: 0
-  levelFiringSpeed: 0
+  bullet: {fileID: 4015106401689666519, guid: 08a291d021de3c141b6db575ab6aa0d5, type: 3}
+  baseFiringSpeed: 1
+  levelFiringSpeed: 1
   baseSpread: 0
   levelSpread: 0
   baseAmount: 1
