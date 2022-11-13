@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     TMP_Text levelText;
 
-    int points;
+    public int points;
     float Timer;
 
     [SerializeField]
