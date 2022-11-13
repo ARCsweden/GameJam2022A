@@ -355,6 +355,29 @@ MonoBehaviour:
   showBiome: 3
   castle: {fileID: 6834853530585761061, guid: bf021aee590e6a2479513a0d2379d07c, type: 3}
   terrain: {fileID: 888517949894727477, guid: 51b5f85b8b8c4d941983f3ed7afce627, type: 3}
+  obstacles:
+  - {fileID: 3372912400709641579, guid: 815eb001357bc924eb7081af8adc1180, type: 3}
+  - {fileID: 1744750754471990173, guid: 18c08a86c0f81234ab05f0cf23b5a5e2, type: 3}
+  - {fileID: 3520935711452574964, guid: 0b409605fd3d10e4488ead66bafc9080, type: 3}
+  - {fileID: 8548718512590561851, guid: e793319add34e4b4f99dc778a4f0801a, type: 3}
+  - {fileID: 1488674626189981748, guid: c2392693ed9731c49bd4d49134c30ea4, type: 3}
+  - {fileID: 8403319420889827716, guid: ab325619485a0b34b8d68c8c08972715, type: 3}
+  - {fileID: 3372912400709641579, guid: 815eb001357bc924eb7081af8adc1180, type: 3}
+  - {fileID: 1744750754471990173, guid: 18c08a86c0f81234ab05f0cf23b5a5e2, type: 3}
+  - {fileID: 7111565265571379971, guid: 1f17d14db70948447a623360d37c4b85, type: 3}
+  - {fileID: 1488674626189981748, guid: c2392693ed9731c49bd4d49134c30ea4, type: 3}
+  - {fileID: 8548718512590561851, guid: e793319add34e4b4f99dc778a4f0801a, type: 3}
+  - {fileID: 8586667563692440277, guid: bd43d3f4161fca246801f485329d2b96, type: 3}
+  - {fileID: 6226340789938649914, guid: 779ddc4b6ec6d7348981a4fb95f17182, type: 3}
+  - {fileID: 6552423357737718457, guid: ba6a24c9d3e9c7248ad282a50203b84f, type: 3}
+  - {fileID: 1488674626189981748, guid: c2392693ed9731c49bd4d49134c30ea4, type: 3}
+  - {fileID: 1488674626189981748, guid: c2392693ed9731c49bd4d49134c30ea4, type: 3}
+  - {fileID: 8548718512590561851, guid: e793319add34e4b4f99dc778a4f0801a, type: 3}
+  - {fileID: 949145430748970149, guid: fa297248ae067c846ad5c1c77a14c569, type: 3}
+  - {fileID: 8548718512590561851, guid: e793319add34e4b4f99dc778a4f0801a, type: 3}
+  - {fileID: 1744750754471990173, guid: 18c08a86c0f81234ab05f0cf23b5a5e2, type: 3}
+  - {fileID: 8183262704410142935, guid: e59eb29fbb12bb94a8b96d21fc1b4ab2, type: 3}
+  - {fileID: 8548718512590561851, guid: 8f06041598c58c6478b06481a43eb6c7, type: 3}
   itemsToPlace: 6
   spread: {x: 300, y: 300}
   border: {x: 100, y: 100}
@@ -362,6 +385,7 @@ MonoBehaviour:
   imageScale: 5
   blurSize: 50
   circleSize: 75
+  threshold: 0.5
 --- !u!4 &1809435584
 Transform:
   m_ObjectHideFlags: 0
