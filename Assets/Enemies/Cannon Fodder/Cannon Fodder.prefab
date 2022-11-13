@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3349030166954217541}
   m_Layer: 0
   m_Name: Cannon Fodder
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4340278938611940551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4a81e745e4a64459d6547f55a1086d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 1
   myPosition: {fileID: 3994714990448911997}
+  Speed: 5
   myRigidBody: {fileID: 9129650736736565692}
 --- !u!64 &5796213551997010951
 MeshCollider:
@@ -143,5 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0057a5df10b574c45b342afa366129cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisGameObject: {fileID: 4340278938611940551}
   HealthPoints: 1
-  Armor: 0.75
+  Armor: 0

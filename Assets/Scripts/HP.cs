@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HP : MonoBehaviour
 {
+    public GameObject ThisGameObject;
+
     public float HealthPoints = 1;
     public float Armor = 0.75f;
 
@@ -30,6 +32,19 @@ public class HP : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        
+
+        if (ThisGameObject.tag == "Player")
+        {
+            //ThisGameObject.SetActive(false);
+            ThisGameObject.GetComponent<Player>().Alive = false;
+            ThisGameObject.GetComponent<CharacterController>().enabled = false;
+            ThisGameObject.GetComponent<Player>().enabled = false;
+            ThisGameObject.transform.position = new Vector3(0, 104, 0);
+        }
+        else if (ThisGameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }

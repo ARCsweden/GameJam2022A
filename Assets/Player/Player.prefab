@@ -1885,7 +1885,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed898d8915959ae438bddd33aa03c555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Level: 0
+  Alive: 0
+  DropPod: {fileID: 6672164074174467768, guid: eccfe935ef12080439ac7d225f66c6aa, type: 3}
   pointsText: {fileID: 1714059007654752257}
+  levelText: {fileID: 0}
   activeMenuItem: 0
   BuySpots:
   - {fileID: 7660680160343509887}
@@ -1927,6 +1931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0057a5df10b574c45b342afa366129cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisGameObject: {fileID: 7446403665923773514}
   HealthPoints: 1
   Armor: 0.75
 --- !u!1 &8550466909036166879

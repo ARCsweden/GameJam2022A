@@ -10,7 +10,9 @@ public class CannonFodder : MonoBehaviour
     [SerializeField]
     Transform myPosition;
 
-    
+    [SerializeField]
+    float Speed;
+
 
     [SerializeField]
     Rigidbody myRigidBody;
@@ -38,7 +40,7 @@ public class CannonFodder : MonoBehaviour
 
         myPosition.LookAt(target.GetComponent<Transform>().position);
         myPosition.rotation.SetEulerAngles(new Vector3(-90,myPosition.rotation.eulerAngles.y,myPosition.rotation.eulerAngles.z));
-        myRigidBody.velocity = myPosition.forward * 2;
+        myRigidBody.velocity = myPosition.forward * Speed;
     }
 
     void FindClosestTarget()
@@ -68,15 +70,16 @@ public class CannonFodder : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         ContactPoint contact = collision.contacts[0];
-        try
+        if (contact.otherCollider.tag == "Player" || contact.otherCollider.tag == "Escort")
         {
-            contact.otherCollider.GetComponent<HP>().Damage(Damage);
-
-        }
-        catch (System.Exception)
-        {
-
-            //throw;
+            try
+            {
+                contact.otherCollider.GetComponent<HP>().Damage(Damage);
+            }
+            catch (System.Exception)
+            {
+                //throw;
+            }
         }
     }
 
