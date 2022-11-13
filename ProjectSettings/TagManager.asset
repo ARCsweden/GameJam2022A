@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Escort
+  - Enemy
+  - Castle
   layers:
   - Default
   - TransparentFX
