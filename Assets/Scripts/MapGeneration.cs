@@ -78,7 +78,7 @@ public class MapGeneration : MonoBehaviour
         }
 
         picture.Apply();
-        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), imageScale);
+        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), 1f/imageScale);
 
      }
 
@@ -140,7 +140,7 @@ public class MapGeneration : MonoBehaviour
                     distance = Mathf.Min(Vector2.Distance((castlePos[i] + spread + border) / imageScale, new Vector2(x, y)), distance);
                 }
 
-                voroni[index].SetPixel(x, y, new Color(circleSize / distance, circleSize / distance, circleSize / distance, 1f));
+                voroni[index].SetPixel(x, y, new Color(circleSize / (distance * imageScale), circleSize / (distance * imageScale), circleSize / (distance * imageScale), 1f));
             }
         }
 
@@ -148,7 +148,7 @@ public class MapGeneration : MonoBehaviour
 
         for (int i = 0; i < itemsToPlace; i++)
         {
-            voroni[i] = blur.Blur(voroni[i], blurSize, 1);
+            voroni[i] = blur.Blur(voroni[i], blurSize / imageScale, 1);
 
             voroni[i].Apply();   
         }
@@ -184,7 +184,7 @@ public class MapGeneration : MonoBehaviour
             {
                 for (int y = 0; y < imageDim.y; y++)
                 {
-                    map[x,y,i] = Mathf.PerlinNoise(0.03f / imageScale * x, 0.03f / imageScale * y) * map[x, y, i];
+                    map[x,y,i] = Mathf.PerlinNoise(imageScale * x / 20f, imageScale * y / 20f) * map[x, y, i];
                 }
             }
 
