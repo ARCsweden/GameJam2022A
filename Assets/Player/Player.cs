@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         gameObject.GetComponent<CharacterController>().enabled = true;
         activeMenuItem = 0;
 
-        attachedWeapon = Instantiate(Machinegun);
+        Instantiate(Machinegun, PlayerTransform);
     }
 
     private void FixedUpdate()
@@ -202,7 +202,7 @@ public class Player : MonoBehaviour
                         newPod.GetComponent<DropPod>().Payload = Shotgun;
                         break;
                     case 1:
-
+                        Debug.Log("Level Up");
                         break;
                     case 0:
                         Debug.Log("Deploying Clone");
@@ -213,8 +213,8 @@ public class Player : MonoBehaviour
                         break;
                 }
 
-                newPod.transform.LookAt(GameObject.FindGameObjectWithTag("Escort").transform.position + new Vector3(0, 100, 0));
-                newPod.GetComponent<Rigidbody>().velocity = newPod.transform.forward * 100;
+                newPod.transform.LookAt(GameObject.FindGameObjectWithTag("Escort").transform.position);
+                newPod.GetComponent<Rigidbody>().velocity = Vector3.up * 75;
             }
             
 
