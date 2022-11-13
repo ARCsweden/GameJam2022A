@@ -78,7 +78,7 @@ public class MapGeneration : MonoBehaviour
         }
 
         picture.Apply();
-        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), imageScale);
+        GetComponent<SpriteRenderer>().sprite = Sprite.Create(picture, new Rect(0.0f, 0.0f, picture.width, picture.height), new Vector2(0.5f, 0.5f), 1f/imageScale);
 
      }
 
@@ -184,7 +184,7 @@ public class MapGeneration : MonoBehaviour
             {
                 for (int y = 0; y < imageDim.y; y++)
                 {
-                    map[x,y,i] = Mathf.PerlinNoise(0.03f / imageScale * x, 0.03f / imageScale * y) * map[x, y, i];
+                    map[x,y,i] = Mathf.PerlinNoise(imageScale * x / 20f, imageScale * y / 20f) * map[x, y, i];
                 }
             }
 
